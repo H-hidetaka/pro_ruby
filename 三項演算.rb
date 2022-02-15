@@ -59,3 +59,30 @@ puts multiple_three?(6)
 puts multiple_three?(66)
 
 # ガベージコレクション：使用されなくなったオブジェクトを回収し、自動的にメモリを開放します。
+# 参照の概念。変数にはオブジェクトそのものではなく、オブジェクトの概念が格納されている。
+a = 'hello'
+b = 'hello'
+puts a.object_id
+puts b.object_id
+c = b
+puts c.object_id
+
+def m(d)
+  d.object_id
+end
+puts m(c)
+
+puts a.eql?(b)
+puts a.eql?(c)
+
+
+a = 'hello'
+b = 'hello'
+c = b
+
+def m(d)
+  d.object_id
+end
+
+puts a.eql?(b)
+puts a.eql?(c)
