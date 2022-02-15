@@ -8,6 +8,8 @@
 
 # if文の戻り値を変数に返すこともできる
 
+
+
 contry = 'aaa'
 
 greeting =
