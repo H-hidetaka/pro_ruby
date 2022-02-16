@@ -137,3 +137,56 @@ a[1..3]
 a = 'abcdef'
 puts a[1...3]
 puts a[1..3]
+
+def liquid?(temperature)
+  0 <= temperature && temperature < 100
+end
+puts liquid?(-1)
+puts liquid?(0)
+puts liquid?(99)
+puts liquid?(100)
+puts liquid?(-1)
+
+def liquid?(temperature)
+  (0...100).include?(temperature)
+end
+puts liquid?(-1)
+puts liquid?(0)
+puts liquid?(99)
+puts liquid?(100)
+puts liquid?(-1)
+
+# case文で使う
+def charge(age)
+  case age
+  when 0..5
+    0
+  when 6..12
+    300
+  when 13..18
+    600
+  else
+    1000
+  end
+end
+
+puts charge(3)
+puts charge(12)
+puts charge(16)
+puts charge(25)
+
+# puts to_hex("a".."e")
+# puts to_hex("a".."e")
+# puts to_hex("a".."e")
+
+puts (1..5).to_a
+puts (1...5).to_a
+
+puts ('a'..'e').to_a
+puts ('1'...'5').to_a
+
+puts ('bad'..'bag').to_a
+puts ('bad'...'bag').to_a
+
+puts [*1..5]
+puts [*1...5]
