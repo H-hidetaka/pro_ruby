@@ -227,3 +227,330 @@ File.open("./sample.erb","w") do |file|
   file.puts("do |n| end")
   file.puts([1,2,3,4,5])
 end
+
+a = [1, 2, 3]
+a.delete(100)
+a.delete(100) do
+  'NG'
+end
+p a
+
+a.delete 100 do
+  'NG'
+end
+p a
+
+# a.delete 100 { 'NG' }
+a.delete(100) { 'NG' }
+p a
+
+names = ['田中', '遠藤', '佐藤']
+san_names = names.map { |name| "#{name}さん" }
+p san_names.join('と')
+
+# names = ['','','']
+names = ['田中', '遠藤', '佐藤']
+a = names.map { |name| "#{name}さん" }.join('と')
+p a
+
+names = ['田中', '竹越', '佐藤ぅ']
+main_name = names.map do | name |
+  "#{name}さん"
+end.join('と')
+
+p main_name
+
+menu = {"うどん" => "300円", "ラーメン" => "500円", "パスタ" => "800円"}
+puts menu["うどん"]
+print menu["うどん"]
+
+menu = {"うどん" => "300円", "ラーメン" => "500円", "パスタ" => "800円"}
+
+p menu
+menu["そば"] = "600"
+p menu
+
+menu["うどん"]= "600円"
+p menu
+
+menu = {"うどん" => "300円", "ラーメン" => "500円", "パスタ"=> "800円"}
+p menu
+menu.delete("うどん")
+p menu
+
+menu = {"うどん" => "300円", "ラーメン" => "500円", "パスタ" => "800円"}
+menu.each {
+  |name,price|
+  p "#{name}は#{price}です"
+}
+
+menu = {"うどん" => "300円", "ラーメン" => "500円","パスタ"=>"800円"}
+menu = {}
+p menu.empty?
+
+a = [1, 2, 3]
+p a.delete(100)
+
+a.delete(100) do
+  'NG'
+end
+
+p a
+# 引数bのかっこを省略可能
+a.delete 100 do
+  'NG'
+end
+p a
+
+# エラーが出る。 {}の結合度が強いため。a.delete 100　ではなく、100 { 'NG' }と認識されるため。
+# a.delete 100 { 'NG' }
+# ＝＞　expecting end-of-input
+
+p a.delete(100) { 'NG' }
+
+# 「と」で配列の中身を結合した
+names = ['田中','ち','あ']
+p san_names = names.map { |name| "#{name}さん" }
+
+p san_names.join('と')
+p san_names.join 'と'
+
+names = ['田中','ち','あ']
+a = names.map { |name| "#{name}さん"}.join('と')
+p a
+# {}とdo...endは基本的に同じで、endの後ろにドットをつけてメソッドを呼び出すことも可能
+names = ['田中','鈴木','佐藤']
+a = names.map do |name|
+  "#{name}さん"
+end.join('と')
+p a
+
+# timesメソッド
+# 0,1,2,3,4が入る
+sum = 0
+5.times { |n| sum += n }
+p sum
+
+# sumに１を加算する処理を5回繰り返す
+sum = 0
+5.times {sum += 1 }
+p sum
+
+# uptoおよびdownメソッド
+# [10,11,12,13,14]
+a = []
+10.upto(14) { |n| a << n }
+p a
+
+# [14,13,12,11]
+a = []
+14.downto(10) { |n| a << n }
+p a
+
+# stepメソッド
+# nからmまで数値をx個ずつ増やしながら処理
+# 1から１０まで２つずつ値を増やしなgら処理をしたい場合
+# a = [1,3,5,7,9]
+a = []
+1.step(10,2) { |n| a << n }
+p a
+
+# 10から1まで２つずつ値を減らしながら処理をしたい場合
+a = []
+10.step(1,-2) { |n| a << n }
+p a
+
+# whileとuntil 繰り返し処理用の文
+# 1を繰り返す
+a = []
+while a.size < 5
+  a << 1
+end
+p a
+
+# doを条件式の後ろに入れて1文で
+a = []
+while a.size < 5
+  a << 1
+end
+p a
+
+
+# 2/21 21:9 379からスタート
+numbers = [1, 2, 3, 4]
+sum = 0
+numbers.each do |n|
+    sum += n
+    p sum
+end
+p sum
+
+
+numbers.each do |i|
+    sum += i
+    p sum
+end
+p sum
+
+numbers.each do |number|
+    sum += number
+end
+p sum
+
+numbers.each { |n|
+  sum += n
+}
+p sum
+
+
+numbers = [1, 2, 3, 4]
+sum = 0
+numbers.each do |n|
+  sum_value = n.even? ? n * 10 : n
+  sum += sum_value
+end
+p sum
+
+# ブロックの外でsum_valueは使えない（ブロック内で初めて登場した変数はブロック外に持ち出せない?
+numbers = [1, 2, 3, 4]
+sum = 0
+numbers.each do |n|
+  sum_value = n.even? ? n * 10 : n
+  sum += sum_value
+end
+p sum
+
+numbers = [5,6,7,8,9,10]
+sum = 0
+
+numbers.each do |n|
+  sum_value = n.even? ? n * 10 : n
+  sum += sum_value
+end
+
+puts sum #=> 261
+# れいだい
+# var = "文字列"
+
+# if var.class == String
+#   "varはStringです"
+# else
+#   "varはStringではありません"
+# end
+
+# var = "文字列"
+
+# var.class == String? "varはStringです" : "varはStringではありません"
+
+# 外部で作成されたローカル変数はブロックの内部でも参照d形る/
+numbers = [1, 2, 3, 4]
+sum = 0
+numbers.each do |n|
+  sum_value = n.even? ? n * 10 : n
+  sum += sum_value
+end
+p sum
+
+
+# ブロック引数の名前をブロック外にある変数の名前と同じにすると、jブロック内ではブロック引数の値が優先される
+
+nubmers = [1, 2, 3, 4]
+sum = 0
+sum_value = 100
+
+numbers.each do |sum_value|
+  sum += sum_value
+end
+p sum
+
+nubmers = [1, 2, 3, 4]
+sum = 0
+
+nubmers.each do |n| sum += n end
+  p sum
+
+nubmers.each { |n| sum += n }
+p sum
+
+numbers = [1,2,3,4]
+sum = 0
+nubmers.each { |n|
+  sum += n
+}
+p sum
+
+# ブロックを使う配列のメソッド
+# mapメソッドは各要素に対してブロックを評価した結果を新しい配列にして返します。例えば、下記のように配列の赤く要素を１０倍日した配列を作るコードがあったとします。
+numbers = [1, 2, 3 ,4 ,5]
+new_numbers = []
+numbers.each { |n| new_numbers << n * 10 }
+p new_numbers
+# mapメソッドを使うとブロックの戻り値が配列の要素となる新しい配列が作成されるため、mapメソッドの戻り値をそのまま新しい変数に入れることができます。
+numbers = [1, 2, 3 ,4 ,5]
+new_numbers = numbers.map { |n| n * 10}
+# numbers.each { |n| new_numbers << n * 10 }
+p new_numbers
+
+# selectメソッド（エイリアスはfind_all0は各要素に対してブロックを評価し、その戻り値が真の要素を集めた配列を返すメソッドです・。
+nubmers = [1, 2, 3, 4, 5, 6]
+even_numbers = numbers.select { |n| n.even? }
+p even_numbers
+
+# rejectメソッドはselectメソッドの反対で、ブロックのモドprいちが真に立った要素を除外した配列を返します。言い換えるとブロックの戻り値が偽である要素を集めるメソッドです。
+numbers = [1, 2, 3, 4 ,5 , 6]
+non = numbers.reject {|n|n % 3 == 0 }
+p non
+
+# findメソッド（エイリアスメソッドはdetect)ブロックの戻り値が真になった最初の要素を返します。
+numbers = [1, 2, 3, 4 , 5]
+even_numbers = numbers.find { |n| n.even? }
+p even_numbers
+
+# inject/reduce injectメソッド（エイリアスはreduce）はたたきこみ演算をおこなうメソッドです。このメソッドの動きは実際のサンプルコードを見ながら説明した方がわかりやすいと思います。find/detect
+
+nubmers = [1, 2, 3, 4, 5, 6]
+sum = 0
+nubmers.each { |n| sum += n }
+p sum
+
+nubmers = [1, 2, 3, 4, 5, 6]
+sum = nubmers.inject(0) { |result, n| result + n }
+p sum
+# ブロックの第１引数は初回のみ位injectメソッドの引数が入る。ブロックの第２引数は配列の要素が順番に入ります。ブロックの戻り値は次の回に引き継がれ、ブロックの第１引数に入るます。繰り返し処理が最後まで終わると、ブロックの戻り値がinjectメソッドの戻り値になリマス。結果としてinjectメソッドとブロックは次のようになる。
+
+numbers = [1, 2, 3, 4]
+sum = numbers.inject(0) {|result, n| result + n}
+p sum
+# -> ((((0+1)+2)+3)+4)と同一
+
+a = ['a','b','c','d','e','E'].inject('gjbh') {
+  |result,s| result + s
+}
+p a
+
+# 上級の書き方
+a = ['ruby', 'java', 'perl'].map { |s| s.upcase }
+p a
+
+a = ['ruby', 'java', 'perl'].map(&:upcase)
+p = a
+
+# 範囲
+a = [1, 2, 3, 4, 5]
+a[1..2]
+p a
+
+a = 'abskjvklgda'
+a[1..3]
+p = a
+
+0度以上、
+def liquid?(temperature)
+  0 <= temperature && temperature < 100
+end
+p liquid?(-1)
+p liquid?(0)
+p liquid?(1)
+p liquid?(2)
+p liquid?(99)
+p liquid?(100)
