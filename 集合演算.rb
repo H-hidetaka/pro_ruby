@@ -544,7 +544,7 @@ a = 'abskjvklgda'
 a[1..3]
 p = a
 
-0度以上、
+# 0度以上、１００未満であれば液体と判定７あ
 def liquid?(temperature)
   0 <= temperature && temperature < 100
 end
@@ -554,3 +554,91 @@ p liquid?(1)
 p liquid?(2)
 p liquid?(99)
 p liquid?(100)
+
+# caseぶん
+def charge(age)
+  case age
+  when 0..5
+    0
+  when 6..12
+    300
+  when 13..18
+    600
+  else
+    1800
+  end
+end
+
+p charge(3)
+p charge(0)
+p charge(300)
+p charge(30)
+p charge(16)
+# 値が連続する
+# (1..5)to_a
+# (1...5)to_a
+
+# ('a'..'e')to_a
+# ('a'...'e')to_a
+
+# ('bad'..'bag')to_a
+# ('bad'..'bag')to_a
+# 繰り返し処理を行う
+
+nunmbers = (1..4).to_a
+sum = 0
+numbers.each {|n| sum += n}
+p sum
+
+sum = 0
+(1..4).each { |n| sum += n }
+p sum
+
+numbers = []
+(1..10).step(2) { |n| numbers << n}
+p numbers
+
+# テスト工藤開発の開発サイクル
+# １、テストコードをかく
+# ２、テストが失敗することを確認するう
+# ３、１つのテストをパスさせるための実装をかく
+# ４、テストがパスすることを確認する
+# ５、別のテスパターンをかく
+# ６、テストが失敗することを確認する
+# ７、仮実装ではなく、ちゃんとしたロジックを書く
+# ８、テストがパスすることを確認する。
+# ９、ロジックをリファクタリングする
+# １０、テストがパスすることおw確認する
+
+# 配列について詳しく
+
+a = [1, 2, 3, 4, 5]
+a[1, 3]
+p a
+
+a = [1, 2, 3]
+a.values_at(0, 2, 4)
+p a
+
+a = [1, 2, 3]
+a[a.size - 1]
+p a
+
+# pushメソッドの説明ではa.push(2,3)のようにして、複数の要素を一度に追加できると説明しました。
+
+a=[]
+a.push(1)#=>[1]#2と3を一度に追加する
+a.push(2,3)#=>[1,2,3]
+p a
+
+a=[]
+b=[2,3]
+
+# 配列を引数に渡す場合は、「１つの配列」として渡したいのか、「複数の引数」として渡したいのか遣唐使、後者の場合は＊を使って展開できる
+
+def yeah(*names)
+  "#{names.join('と')}、こんにちは！"
+end
+p yeah
+
+# 気になったところだけ写せばいい.
